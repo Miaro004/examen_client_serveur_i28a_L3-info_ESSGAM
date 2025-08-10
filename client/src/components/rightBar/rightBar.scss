@@ -1,0 +1,177 @@
+@import "../../style.scss";
+
+.rightBar {
+  flex: 3;
+  position: sticky;
+  top: 70px;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+  background: linear-gradient(135deg, #18181b 0%, #232326 100%);
+  color: #f8f8fa;
+
+  @include mobile {
+    display: none;
+  }
+
+  @include tablet {
+    flex: 2;
+    .container {
+      padding: 12px 8px;
+      .item {
+        padding: 12px 8px;
+      }
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #232326;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ff6b9d, #ff4081);
+    border-radius: 4px;
+    &:hover {
+      background: linear-gradient(135deg, #ff85b3, #ff4081);
+    }
+  }
+
+  .container {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .item {
+      background: linear-gradient(135deg, #232326 0%, #18181b 100%);
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(255, 105, 180, 0.08);
+      padding: 18px 16px;
+      margin-bottom: 12px;
+
+      .section-header {
+        font-size: 16px;
+        font-weight: 600;
+        color: #ff6b9d;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+      }
+
+      .user {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 8px 0;
+        border-bottom: 1px solid #2d2d2d;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .userInfo {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+
+          img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff6b9d;
+            background: #232326;
+          }
+
+          .username {
+            font-size: 15px;
+            font-weight: 500;
+            color: #f8f8fa;
+          }
+
+          .mutual-badge {
+            background: linear-gradient(90deg, #ff6b9d 60%, #ff4081 100%);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 2px 8px;
+            margin-left: 8px;
+            letter-spacing: 0.5px;
+          }
+        }
+
+        .follow-btn {
+          background: linear-gradient(90deg, #ff6b9d 60%, #ff4081 100%);
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          padding: 6px 16px;
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background-color 0.2s, box-shadow 0.2s;
+          box-shadow: 0 2px 8px rgba(255, 105, 180, 0.08);
+
+          &:hover:enabled {
+            background: linear-gradient(90deg, #ff4081 60%, #ff6b9d 100%);
+            box-shadow: 0 4px 16px rgba(255, 105, 180, 0.15);
+          }
+
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+        }
+      }
+
+      .online-friend {
+        .userInfo {
+          position: relative;
+          img {
+            border: 2px solid #ff4081;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            right: -6px;
+            bottom: 2px;
+            width: 10px;
+            height: 10px;
+            background: #ff6b9d;
+            border: 2px solid #232326;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+          }
+        }
+      }
+
+      .empty-state {
+        text-align: center;
+        color: #bdbdbd;
+        font-size: 14px;
+        padding: 10px 0;
+      }
+    }
+  }
+}
+
+// Animation pour l'indicateur en ligne
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
